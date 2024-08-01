@@ -12,6 +12,8 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
+       - name: Test Java Version
+         run: java --version
        - name: Liquibase
          uses: liquibase/liquibase-github-action@v7
          with:
