@@ -1,0 +1,81 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <changeSet id="20240801" author="ChristinaRiedel">
+    <createTable tableName="Wind">
+      <column name="Id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="speed" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="deg" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="gust" type="double">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+    <createTable tableName="weather">
+      <column name="Id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="weather_id" type="int">
+        <constraints nullable="true" />
+      </column>
+      <column name="main" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="description" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="icon" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="temp" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="feels_like" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="temp_min" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="temp_max" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="pressure" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="humidity" type="int">
+        <constraints nullable="true" />
+      </column>
+      <column name="wind_id" type="int">
+        <constraints nullable="false" foreignKeyName="wind" references="Wind(Id)"/>
+      </column>
+    </createTable>
+    <createTable tableName="City">
+      <column name="Id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="name" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="local_name" type="varchar(2)">
+        <constraints nullable="true" />
+      </column>
+      <column name="country" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="state" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+      <column name="lat" type="double">
+        <constraints nullable="true" />
+      </column>
+      <column name="lon" type="double">
+        <constraints nullable="true" />
+      </column>
+
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
