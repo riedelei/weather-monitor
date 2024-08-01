@@ -12,12 +12,6 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
-       - name: MySQL Docker
-         uses: mirromutth/mysql-action@v1.1
-         with:
-           mysql root password: 'dbpass' # Required if "mysql user" is empty, default is empty. The root superuser password
-           mysql user: 'dbuser' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-           mysql password: 'dbpass' #${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
        - name: Liquibase
          uses: liquibase/liquibase-github-action@v7
          with:
@@ -27,6 +21,12 @@ jobs:
            username: 'dbuser'
            password: 'dbpass'
            url: 'jdbc:mysql://localhost/test'
+       - name: MySQL Docker
+         uses: mirromutth/mysql-action@v1.1
+         with:
+           mysql root password: 'dbpass' # Required if "mysql user" is empty, default is empty. The root superuser password
+           mysql user: 'dbuser' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+           mysql password: 'dbpass' #${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
        - name: Upload
