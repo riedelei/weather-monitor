@@ -13,7 +13,7 @@ jobs:
            distribution: 'temurin'
            architecture: x64
        - name: Test Java Version
-         run: java --version
+         run: echo $JAVA_HOME
        - name: Liquibase
          uses: liquibase/liquibase-github-action@v7
          with:
