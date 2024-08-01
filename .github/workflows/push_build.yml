@@ -13,7 +13,7 @@ jobs:
            distribution: 'temurin'
            architecture: x64
        - name: MySQL Docker
-         uses: mirromutth/mysql-action@1.1
+         uses: mirromutth/mysql-action@v1.1
          with:
            mysql root password: 'dbpass' # Required if "mysql user" is empty, default is empty. The root superuser password
            mysql user: 'dbuser' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
