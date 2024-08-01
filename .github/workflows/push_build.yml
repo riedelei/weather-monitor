@@ -12,7 +12,11 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
-       - name: Run the Maven package phase
-         run: mvn --batch-mode --update-snapshots package
+       - run: mvn --batch-mode --update-snapshots verify
+                - run: mkdir staging && cp target/*.jar staging
+                - uses: actions/upload-artifact@v4
+                  with:
+                    name: Package
+                    path: staging
        - name: Meldung anzeigen
          run: echo "Fertig!"
