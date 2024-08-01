@@ -19,7 +19,7 @@ jobs:
            mysql user: 'dbuser' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
            mysql password: 'dbpass' #${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
        - name: Liquibase
-         uses: liquibase/liquibase-github-action@v2
+         uses: liquibase/liquibase-github-action@v7
          with:
            operation: 'update'
            classpath: 'db/'
