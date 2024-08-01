@@ -65,7 +65,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<fork>true</fork>
-					<executable>/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.3-9/x64</executable>
+					<executable>/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.3-9/x64/bin/javac</executable>
 				</configuration>
 			</plugin>
 			<plugin>
