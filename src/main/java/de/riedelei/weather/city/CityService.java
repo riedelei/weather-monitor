@@ -1,6 +1,5 @@
 package de.riedelei.weather.city;
 
-import de.riedelei.weather.weatherdata.Weather;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

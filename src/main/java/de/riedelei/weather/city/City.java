@@ -1,12 +1,8 @@
 package de.riedelei.weather.city;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 @Entity
 @Data
