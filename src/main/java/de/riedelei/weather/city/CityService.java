@@ -16,6 +16,8 @@ public class CityService {
 
     }
 
+    public
+
     private void setUrlWithLatLon(String city) {
         this.placesUrl = this.placesUrl.concat(city).concat("&appid={c5b4da3f4057c95b48ffd41706fe58ea}");
     }
