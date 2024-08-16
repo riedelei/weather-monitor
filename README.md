@@ -6,3 +6,6 @@ https://developers.google.com/maps/documentation/geocoding/requests-places-geoco
 
 oder auch OpenWeather
 https://openweathermap.org/api/geocoding-api
+
+API-Key:
+c5b4da3f4057c95b48ffd41706fe58ea
