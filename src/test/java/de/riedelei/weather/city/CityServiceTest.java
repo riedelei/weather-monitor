@@ -1,7 +1,9 @@
 package de.riedelei.weather.city;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import de.riedelei.weather.MonitorApplication;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,9 +25,10 @@ public class CityServiceTest {
     public CityServiceTest() { }
 
     @Test
-    public void givenCity_whenCallCitie_thenOk() {
+    public void givenCity_whenCallCityService_LatLonNotNull() throws JsonProcessingException {
 
-        /*City city = cityService.callCityData("Nürnberg");
-        Assert.assertFalse(false);*/
+        City city = cityService.callCityData("Nürnberg");
+        Assert.assertTrue(city.getLat() != 0.0);
+        Assert.assertTrue(city.getLon() != 0.0);
     }
 }
