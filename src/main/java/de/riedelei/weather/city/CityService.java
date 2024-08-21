@@ -19,6 +19,7 @@ public class CityService {
         RestTemplate restTemplate = new RestTemplate();
         setUrlWithLatLon(city);
 
+        // TODO: Für einen echten Aufruf hier das auskommentieren
         // ResponseEntity<String> response
         //         = restTemplate.getForEntity(placesUrl, String.class);
         // var responseString = response.getBody().toString();
