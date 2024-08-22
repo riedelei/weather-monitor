@@ -19,12 +19,11 @@ public class CityService {
         RestTemplate restTemplate = new RestTemplate();
         setUrlWithLatLon(city);
 
-        // TODO: Für einen echten Aufruf hier das auskommentieren
-        // ResponseEntity<String> response
-        //         = restTemplate.getForEntity(placesUrl, String.class);
-        // var responseString = response.getBody().toString();
+        ResponseEntity<String> response
+                 = restTemplate.getForEntity(placesUrl, String.class);
+        var responseString = response.getBody().toString();
         var cityMapper = new CityMapper();
-        return cityMapper.mapStringToCity(jasonString);
+        return cityMapper.mapStringToCity(responseString);
     }
 
     private void setUrlWithLatLon(String city) {

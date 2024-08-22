@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/city")
+@RequestMapping("/")
 public class CityController {
 
     @Autowired
     private CityService cityService;
 
-    @GetMapping
+    @GetMapping("city/{city}")
     public City getLatLonFromCity(@PathVariable String city) throws JsonProcessingException {
         var cityResponse = cityService.callCityData(city);
         return cityResponse;

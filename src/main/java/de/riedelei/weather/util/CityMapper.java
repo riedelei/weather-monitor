@@ -17,7 +17,7 @@ public class CityMapper {
         var city = City.builder()
                 .lon(jasonRootNode.get("lon").asDouble())
                 .lat(jasonRootNode.get("lat").asDouble())
-                .state(jasonRootNode.get("state").asText())
+                .state(jasonRootNode.get("state") == null ? "" : jasonRootNode.get("state").asText())
                 .name(jasonRootNode.get("name").asText())
                 .localName(slocalName)
                 .country(jasonRootNode.get("country").asText()).build();

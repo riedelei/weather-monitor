@@ -18,11 +18,14 @@ import lombok.NoArgsConstructor;
 public class City {
     @Id
     private Long Id;
-    private String name;
+    @Builder.Default
+    private String name="";
     @Column(name = "local_name")
     private String localName;
-    private String country;
-    private String state;
-    private double lat;
+    @Builder.Default
+    private String country="";
+    @Builder.Default
+    private String state="";
+    private double lat=0.0;
     private double lon;
 }
