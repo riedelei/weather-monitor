@@ -1,34 +1,40 @@
 package de.riedelei.weather.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.riedelei.weather.city.City;
+import org.json.JSONArray;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class CityMapper {
 
-    public City mapStringToCity(String scity) throws JsonProcessingException {
+    private List<City> cities;
 
-        scity = cutString(scity);
-        var objectMapper =  new ObjectMapper();
-        var jasonRootNode = objectMapper.readTree(scity);
+    private Random random;
 
-        var slocalName = getLocalName(jasonRootNode.get("local_names"));
-        var city = City.builder()
-                .lon(jasonRootNode.get("lon").asDouble())
-                .lat(jasonRootNode.get("lat").asDouble())
-                .state(jasonRootNode.get("state") == null ? "" : jasonRootNode.get("state").asText())
-                .name(jasonRootNode.get("name").asText())
-                .localName(slocalName)
-                .country(jasonRootNode.get("country").asText()).build();
-        return city;
+    public CityMapper() {
+        cities = new ArrayList<>();
+        this.random = new Random();
     }
 
-    private String getLocalName(JsonNode jsonNode) {
-        return jsonNode.get("de").asText();
-    }
+    public List<City> mapStringToCity(String scity) {
 
-    private String cutString(String scity){
-        return scity.substring(1, scity.length() - 1);
+        var jsonArray = new JSONArray(scity);
+
+        for(int i = 0; i < jsonArray.length(); i++) {
+            var o = jsonArray.getJSONObject(i);
+
+            var city = City.builder()
+                    .lon(o.getDouble("lon"))
+                    .lat(o.getDouble("lat"))
+                    .state(o.getString("state"))
+                    .name(o.getString("name"))
+                    .localName(o.isNull("local_names") ? "" : o.getJSONObject("local_names").getString("de"))
+                    .country(o.getString("country")).build();
+            city.setId(Math.absExact(this.random.nextLong()));
+            cities.add(city);
+        }
+
+        return cities;
     }
 }
