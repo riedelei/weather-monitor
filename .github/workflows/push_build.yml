@@ -8,8 +8,10 @@ jobs:
          image: gvenzl/oracle-free:latest
          env:
            ORACLE_RANDOM_PASSWORD: true
-           APP_USER: my_user
-           APP_USER_PASSWORD: 1234
+           SETUP_APP_USER: my_user
+           SETUP_APP_USER_PASSWORD: 1234
+           SETUP_CONTAINER_RUNTIME: docker
+           SETUP_ORACLE_PASSWORD: 1234
          ports:
            - 1521:1521
          options: >-
