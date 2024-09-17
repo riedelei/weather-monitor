@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.List;
+
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.NONE,
@@ -27,7 +29,12 @@ public class CityServiceTest {
     @Test
     public void givenCity_whenCallCityService_LatLonNotNull() throws JsonProcessingException {
 
-        City city = cityService.callCityData("Nürnberg");
+        List<City> cities = cityService.callCityData("Kempten");
+        var city = new City();
+        if(!cities.isEmpty())
+        {
+            city = cities.get(0);
+        }
         Assert.assertTrue(city.getLat() != 0.0);
         Assert.assertTrue(city.getLon() != 0.0);
     }

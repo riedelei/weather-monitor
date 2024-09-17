@@ -2,6 +2,7 @@ package de.riedelei.weather.city;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.riedelei.weather.util.CityMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
@@ -17,13 +18,13 @@ public class CityService {
         RestTemplate restTemplate = new RestTemplate();
         setUrlWithLatLon(city);
 
-        // ResponseEntity<String> response
-        //          = restTemplate.getForEntity(placesUrl, String.class);
-        // var responseString = response.getBody().toString();
-        // var cityMapper = new CityMapper();
-        // return cityMapper.mapStringToCity(responseString);
+        ResponseEntity<String> response
+                  = restTemplate.getForEntity(placesUrl, String.class);
+        var responseString = response.getBody().toString();
         var cityMapper = new CityMapper();
-        return cityMapper.mapStringToCity(jasonPlaces);
+        return cityMapper.mapStringToCity(responseString);
+        //var cityMapper = new CityMapper();
+        //return cityMapper.mapStringToCity(jasonPlaces);
     }
 
     private void setUrlWithLatLon(String city) {
