@@ -12,13 +12,15 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
-       - name: Setup Oracle DB
-         uses: gvenzl/setup-oracle-free@v1
-         with:
-             port: 1521
-             oracle-password: 1234
-             app-user: system
-             app-user-password: 1234
+#       - name: Setup Oracle DB
+#         uses: gvenzl/setup-oracle-free@v1
+#         with:
+#             oracle-password: 1234
+#             container-runtime: docker
+#             oracle-database: FREEPDB1
+#             container-name: oracledb
+#             app-user: system
+#             app-user-password: 1234
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
        - name: Upload
