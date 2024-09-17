@@ -5,7 +5,7 @@ jobs:
      runs-on: ubuntu-latest
      services:
        oracle:
-         image: container-registry.oracle.com/database/free@latest
+         image: gvenzl/oracle-free:latest
          env:
            ORACLE_PASSWORD: 1234
            APP_USER: system
@@ -28,7 +28,7 @@ jobs:
            distribution: 'temurin'
            architecture: x64
        - name: Setup Oracle DB
-         uses: container-registry.oracle.com/database/free@latest
+         uses: gvenzl/setup-oracle-free@v1
        - run: echo "SELECT 'HUHU';" | sql system/1234@localhost/FREEEPDB1
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
