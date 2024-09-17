@@ -7,6 +7,7 @@ jobs:
        oracle:
          image: gvenzl/oracle-free:latest
          env:
+           ORACLE_RANDOM_PASSWORD: true
            APP_USER: test
            APP_USER_PASSWORD: 1234
          ports:
