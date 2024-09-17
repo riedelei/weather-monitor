@@ -35,12 +35,12 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
-#       - name: Setup Oracle DB
-#         uses: gvenzl/setup-oracle-free@v1
-#         with:
-#           app-user: my_user
-#           app-user-password: 1234
-#       - run: echo "SELECT 'HUHU';" | sql my_user/1234@localhost/FREEEPDB1
+       - name: Test Oracle DB
+         uses: gvenzl/setup-oracle-free@v1
+         with:
+           app-user: my_user
+           app-user-password: 1234
+       - run: sql my_user/1234@localhost/FREEEPDB1
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
        - name: Upload
