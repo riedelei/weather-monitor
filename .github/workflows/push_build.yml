@@ -5,7 +5,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: " clear port"
-         run: ps axf | grep rootlessport | awk '{print "kill -9 " $1}'
+         run: ps axf | grep rootlessport | awk '{kill -9 $1}'
    deploy:
      runs-on: ubuntu-latest
      services:
