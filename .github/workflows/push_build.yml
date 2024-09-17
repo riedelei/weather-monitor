@@ -3,6 +3,21 @@ on: push
 jobs:
    deploy:
      runs-on: ubuntu-latest
+     services:
+       oracle:
+         image: gvenzl/setup-oracle-free@v1
+         env:
+           ORACLE_PASSWORD: 1234
+           APP_USER: system
+           APP_USER_PASSWORD: 1234
+           oracle-database: FREEPDB1
+         ports:
+           - 1521:1521
+         options: >-
+           --health-cmd healthcheck.sh
+           --health-interval 10s
+           --health-timeout 5s
+           --health-retries 10
      steps:
        - name: Get Code
          uses: actions/checkout@v4
@@ -12,15 +27,9 @@ jobs:
            java-version: '21'
            distribution: 'temurin'
            architecture: x64
-#       - name: Setup Oracle DB
-#         uses: gvenzl/setup-oracle-free@v1
-#         with:
-#             oracle-password: 1234
-#             container-runtime: docker
-#             oracle-database: FREEPDB1
-#             container-name: oracledb
-#             app-user: system
-#             app-user-password: 1234
+       - name: Setup Oracle DB
+         uses: gvenzl/setup-oracle-free@v1
+       - run: echo "SELECT 'HUHU';" | sql system/1234@localhost/FREEEPDB1
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
        - name: Upload
