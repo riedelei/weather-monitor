@@ -40,7 +40,7 @@ jobs:
 #         with:
 #           app-user: my_user
 #           app-user-password: 1234
-       - run: echo "SELECT 'HUHU';" | sql my_user/1234@localhost/FREEEPDB1
+#       - run: echo "SELECT 'HUHU';" | sql my_user/1234@localhost/FREEEPDB1
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
        - name: Upload
