@@ -10,7 +10,6 @@ jobs:
            ORACLE_PASSWORD: 1234
            APP_USER: test
            APP_USER_PASSWORD: 1234
-           ORACLE_DATABASE: FREEPDB1
          ports:
            - 1521:1521
          options: >-
