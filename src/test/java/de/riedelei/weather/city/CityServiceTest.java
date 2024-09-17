@@ -38,4 +38,12 @@ public class CityServiceTest {
         Assert.assertTrue(city.getLat() != 0.0);
         Assert.assertTrue(city.getLon() != 0.0);
     }
+
+    @Test
+    public void givenCity_whenCallCityService_MoreThanOne() throws JsonProcessingException {
+
+        List<City> cities = cityService.callCityData("Frankfurt");
+
+        Assert.assertTrue(cities.size() > 1);
+    }
 }
