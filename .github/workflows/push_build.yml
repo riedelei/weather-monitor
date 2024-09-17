@@ -7,6 +7,7 @@ jobs:
        oracle:
          image: gvenzl/oracle-free:latest
          env:
+           ORACLE_RANDOM_PASSWORD: false
            ORACLE_USER: system
            ORACLE_PASSWORD: 1234
            APP_USER: test
