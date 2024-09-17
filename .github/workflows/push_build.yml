@@ -8,7 +8,7 @@ jobs:
          image: gvenzl/oracle-free:latest
          env:
            ORACLE_RANDOM_PASSWORD: true
-           APP_USER: test
+           APP_USER: my_user
            APP_USER_PASSWORD: 1234
          ports:
            - 1521:1521
@@ -28,6 +28,9 @@ jobs:
            architecture: x64
        - name: Setup Oracle DB
          uses: gvenzl/setup-oracle-free@v1
+         with:
+           app-user: my_user
+           app-user-password: 1234
        - run: echo "SELECT 'HUHU';" | sql test/1234@localhost/FREEEPDB1
        - run: mvn --batch-mode --update-snapshots verify
        - run: mkdir staging && cp target/*.jar staging
