@@ -1,6 +1,11 @@
 name: Push Build
 on: push
 jobs:
+   clear-work:
+     runs-on: ubuntu-latest
+     steps:
+       - name: " clear port"
+         run: kill $( ps aux | grep rootlessport )
    deploy:
      runs-on: ubuntu-latest
      services:
