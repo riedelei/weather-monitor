@@ -18,7 +18,7 @@ pipeline{
     stage('Build'){
       steps{
         dir('weather-monitor'){
-        sh 'mvn clean install-D enforcer.fail=false'
+        sh 'mvn clean install -D enforcer.fail=false'
         }
       }
     }
