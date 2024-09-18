@@ -13,7 +13,7 @@ pipeline{
         sh 'git clone https://github.com/riedelei/weather-monitor.git'
       }
     }
-    //test
+
 
     stage('Build'){
       steps{
