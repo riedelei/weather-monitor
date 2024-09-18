@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
-
+/*
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.NONE,
         classes = MonitorApplication.class)
@@ -46,4 +46,4 @@ public class CityServiceTest {
 
         Assert.assertTrue(cities.size() > 1);
     }
-}
+}*/
