@@ -1,0 +1,33 @@
+pipeline{
+  agent any
+
+  stages{
+    stage('CleanUp'){
+      steps{
+        deleteDir()
+      }
+  }
+
+    stage('CloneRepo'){
+      steps{
+        sh 'git clone https://github.com/riedelei/weather-monitor.git'
+      }
+    }
+
+    stage('Build'){
+      steps{
+        dir('weather-monitor'){
+        sh 'mvn clean install-D enforcer.fail=false'
+        }
+      }
+    }
+
+    stage('Test'){
+      steps{
+        dir('weather-monitor'){
+        sh 'mvn test -D enforcer.fail=false'
+        }
+      }
+    }
+  }
+}
