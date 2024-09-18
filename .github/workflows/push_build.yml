@@ -1,35 +1,11 @@
 name: Push Build
 on: push
 jobs:
-   clear-work:
-     runs-on: ubuntu-latest
-     steps:
-       - name: " clear port"
-         run: ps axf | grep rootlessport | awk '{kill -9 $1}'
    deploy:
      runs-on: ubuntu-latest
-     services:
-       oracle:
-         image: gvenzl/oracle-free:latest
-         env:
-           ORACLE_RANDOM_PASSWORD: true
-           SETUP_APP_USER: my_user
-           SETUP_APP_USER_PASSWORD: 1234
-           SETUP_CONTAINER_RUNTIME: docker
-           SETUP_ORACLE_PASSWORD: 1234
-           VOLUME: ${{ github.workspace }}/database-files
-         ports:
-           - 1521:1521
-         options: >-
-           --health-cmd healthcheck.sh
-           --health-interval 10s
-           --health-timeout 5s
-           --health-retries 10
      steps:
        - name: Get Code
          uses: actions/checkout@v4
-       - run: mkdir ${{ github.workspace }}/database-files
-       - run: sql "SELECT * FROM Users;"
        - name: Set up JDK 21 for x64
          uses: actions/setup-java@v4
          with:
