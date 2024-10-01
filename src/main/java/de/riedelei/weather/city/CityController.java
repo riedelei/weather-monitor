@@ -21,10 +21,24 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+    // @CrossOrigin
+    // @GetMapping("city/{name}")
+    // public List<City> getLatLonFromCity(@PathVariable String name) throws JsonProcessingException {
+    //     var cityResponse = cityService.callCityData(name);
+    //     return cityResponse;
+    // }
+
     @CrossOrigin
-    @GetMapping("city/{name}")
-    public List<City> getLatLonFromCity(@PathVariable String name) throws JsonProcessingException {
+    @GetMapping("city")
+    public List<City> getLatLonFromCity(@RequestParam String name) throws JsonProcessingException {
         var cityResponse = cityService.callCityData(name);
+        return cityResponse;
+    }
+
+    @CrossOrigin
+    @GetMapping("onecity/{name}")
+    public List<City> getLatLonFromOneCity(@PathVariable String name) throws JsonProcessingException {
+        var cityResponse = cityService.callOneCityData(name);
         return cityResponse;
     }
 
