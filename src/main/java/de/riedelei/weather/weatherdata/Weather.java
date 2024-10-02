@@ -8,8 +8,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
-// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}&units=metric&lang=de
+
+//
 @Entity
 @Table
 @Data
@@ -17,9 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Weather {
-   private String main; // "Rain"
 
-   private String description; // moderate Rain
+
+    private List<WeatherCondition> weatherCondition;
 
    private double temp;
 
@@ -29,6 +31,7 @@ public class Weather {
 
    private double temp_max;
 
+   private String city;
    private int pressure;
    private int humidity;
    private int sea_level;
@@ -40,6 +43,8 @@ public class Weather {
    private double rain;
    private double lon;
    private double lat;
+   private long visibility;
+   private String icon;
     @Id
     private Long id;
 
