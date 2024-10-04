@@ -12,66 +12,66 @@ import java.util.List;
 
 public class WeatherMapper {
 
-    private String jsonText = "                          \n" +
-            "{\n" +
-            "   \"coord\": {\n" +
-            "      \"lon\": 7.367,\n" +
-            "      \"lat\": 45.133\n" +
-            "   },\n" +
-            "   \"weather\": [\n" +
-            "      {\n" +
-            "         \"id\": 501,\n" +
-            "         \"main\": \"Rain\",\n" +
-            "         \"description\": \"moderate rain\",\n" +
-            "         \"icon\": \"10d\"\n" +
-            "      }\n" +
-            "{\n" +
-            "         \"id\": 502,\n" +
-            "         \"main\": \"Sun\",\n" +
-            "         \"description\": \"sunny\",\n" +
-            "         \"icon\": \"01n\"\n" +
-            "      }\n" +
-            "   ],\n" +
-            "   \"base\": \"stations\",\n" +
-            "   \"main\": {\n" +
-            "      \"temp\": 284.2,\n" +
-            "      \"feels_like\": 282.93,\n" +
-            "      \"temp_min\": 283.06,\n" +
-            "      \"temp_max\": 286.82,\n" +
-            "      \"pressure\": 1021,\n" +
-            "      \"humidity\": 60,\n" +
-            "      \"sea_level\": 1021,\n" +
-            "      \"grnd_level\": 910\n" +
-            "   },\n" +
-            "   \"visibility\": 10000,\n" +
-            "   \"wind\": {\n" +
-            "      \"speed\": 4.09,\n" +
-            "      \"deg\": 121,\n" +
-            "      \"gust\": 3.47\n" +
-            "   },\n" +
-            "   \"rain\": {\n" +
-            "      \"1h\": 2.73\n" +
-            "   },\n" +
-            "   \"clouds\": {\n" +
-            "      \"all\": 83\n" +
-            "   },\n" +
-            "   \"dt\": 1726660758,\n" +
-            "   \"sys\": {\n" +
-            "      \"type\": 1,\n" +
-            "      \"id\": 6736,\n" +
-            "      \"country\": \"IT\",\n" +
-            "      \"sunrise\": 1726636384,\n" +
-            "      \"sunset\": 1726680975\n" +
-            "   },\n" +
-            "   \"timezone\": 7200,\n" +
-            "   \"id\": 3165523,\n" +
-            "   \"name\": \"Province of Turin\",\n" +
-            "   \"cod\": 200\n" +
-            "}                    \n" +
-            "                        ";
+    private String jsonText =
+            """ 
+                       {
+                       "coord": {
+                          "lon": 7.367,
+                          "lat": 45.133
+                       },
+                       "weather": [
+                          {
+                             "id": 501,
+                             "main": "Rain",
+                             "description": "moderate rain",
+                             "icon": "10d"
+                          },
+                    {
+                             "id": 502,
+                             "main": "Sun",
+                             "description": "sunny",
+                             "icon": "01n"
+                          }
+                       ],
+                       "base": "stations",
+                       "main": {
+                          "temp": 284.2,
+                          "feels_like": 282.93,
+                          "temp_min": 283.06,
+                          "temp_max": 286.82,
+                          "pressure": 1021,
+                          "humidity": 60,
+                          "sea_level": 1021,
+                          "grnd_level": 910
+                       },
+                       "visibility": 10000,
+                       "wind": {
+                          "speed": 4.09,
+                          "deg": 121,
+                          "gust": 3.47
+                       },
+                       "rain": {
+                          "1h": 2.73
+                       },
+                       "clouds": {
+                          "all": 83
+                       },
+                       "dt": 1726660758,
+                       "sys": {
+                          "type": 1,
+                          "id": 6736,
+                          "country": "IT",
+                          "sunrise": 1726636384,
+                          "sunset": 1726680975
+                       },
+                       "timezone": 7200,
+                       "id": 3165523,
+                       "name": "Province of Turin",
+                       "cod": 200
+                    }""";
     public Weather generateWeatherObject(String json) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(jsonText);
+        JsonNode jsonNode = objectMapper.readTree(json);
 
         return Weather.builder().id(1L)
                 .visibility(jsonNode.get("visibility").asLong())

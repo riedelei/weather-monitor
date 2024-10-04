@@ -17,7 +17,7 @@ public class WeatherService {
 
     //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}&units=metric&lang=de
 
-    private final String mainUrl = "https://api.openweathermap.org/data/2.5/weather?lat=";
+    private String mainUrl = "https://api.openweathermap.org/data/2.5/weather?lat=";
 
     private StringManipulator stringManipulator;
 
@@ -26,12 +26,12 @@ public class WeatherService {
     private WeatherMapper weatherMapper;
 
     public WeatherService() {
-        stringManipulator = new StringManipulator();
+        stringManipulator = new StringManipulator(mainUrl);
         openWeatherConst = new OpenWeatherConst();
         weatherMapper = new WeatherMapper();
     }
 
-    public Weather getWeatherDataFromOpenWeatherMap(long lon, long lat) throws JsonProcessingException {
+    public Weather getWeatherDataFromOpenWeatherMap(String lon, String lat) throws JsonProcessingException {
         setUrl(lat, lon);
 
         RestTemplate restTemplate = new RestTemplate();
@@ -49,11 +49,12 @@ public class WeatherService {
         return new ArrayList<Weather>();
     }
 
-    private void setUrl(long lat, long lon) {
-        stringManipulator.addVariableToString(mainUrl, String.valueOf(lat));
-        stringManipulator.addVariableToString(mainUrl, "&lon="+lon);
-        stringManipulator.addVariableToString(mainUrl, "&appid="+ openWeatherConst.APIKEY);
-        stringManipulator.addVariableToString(mainUrl, "&units="+ OpenWeatherConst.UNIT.METRIC.name().toLowerCase());
-        stringManipulator.addVariableToString(mainUrl, "&lang="+ OpenWeatherConst.LANGUAGE.DE.name().toLowerCase());
+    private void setUrl(String lat, String lon) {
+        stringManipulator.addVariableToString(lat);
+        stringManipulator.addVariableToString("&lon="+lon);
+        stringManipulator.addVariableToString("&appid="+ openWeatherConst.APIKEY);
+        stringManipulator.addVariableToString("&units="+ OpenWeatherConst.UNIT.METRIC.name().toLowerCase());
+        stringManipulator.addVariableToString("&lang="+ OpenWeatherConst.LANGUAGE.DE.name().toLowerCase());
+        mainUrl = stringManipulator.getUrl();
     }
 }

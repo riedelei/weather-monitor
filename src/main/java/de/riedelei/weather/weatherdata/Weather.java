@@ -2,6 +2,7 @@ package de.riedelei.weather.weatherdata;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ import java.util.List;
 public class Weather {
 
 
+    @OneToMany
     private List<WeatherCondition> weatherCondition;
 
    private double temp;
