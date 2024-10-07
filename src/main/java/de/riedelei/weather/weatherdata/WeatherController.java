@@ -25,7 +25,7 @@ public class WeatherController {
     }
 
     @CrossOrigin
-    @GetMapping("weather1")
+    @GetMapping("weather_city")
     public List<Weather> getWeatherForCity(@RequestParam String city) {
 
         return weatherService.getWeatherComplete(city);

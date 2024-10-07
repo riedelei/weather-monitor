@@ -22,8 +22,8 @@ import java.util.List;
 public class Weather {
 
 
-    @OneToMany
-    private List<WeatherCondition> weatherCondition;
+   @OneToMany(mappedBy="id")
+   private List<WeatherCondition> weatherCondition;
 
    private double temp;
 
@@ -46,7 +46,6 @@ public class Weather {
    private double lon;
    private double lat;
    private long visibility;
-   private String icon;
     @Id
     private Long id;
 
