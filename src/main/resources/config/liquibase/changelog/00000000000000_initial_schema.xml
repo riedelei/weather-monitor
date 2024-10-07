@@ -1,0 +1,43 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+<changeSet  id="1"  author="crie">
+  <createTable  tableName="Weather">
+    <column  name="ID"  type="INT"/>
+    <column  name="TEMP"  type="DOUBLE"/>
+    <column  name="FEELS_LIKE"  type="DOUBLE"/>
+    <column  name="TEMP_MIN"  type="DOUBLE"/>
+    <column  name="TEMP_MAX"  type="DOUBLE"/>
+    <column  name="CITY"  type="varchar(255)"/>
+    <column  name="PRESSURE"  type="INT"/>
+    <column  name="HUMIDITY"  type="INT"/>
+    <column  name="SEA_LEVEL"  type="INT"/>
+    <column  name="GRND_LEVEL"  type="INT"/>
+    <column  name="WIND_SPEED"  type="DOUBLE"/>
+    <column  name="SUNRISE"  type="BIGINT"/>
+    <column  name="SUNSET"  type="BIGINT"/>
+    <column  name="CLOUDS"  type="INT"/>
+    <column  name="RAIN"  type="DOUBLE"/>
+    <column  name="LON"  type="DOUBLE"/>
+    <column  name="LAT"  type="DOUBLE"/>
+    <column  name="VISIBILITY"  type="BIGINT"/>
+    <column  name="WEATHER"  type="INT">  <!--TODO foreign key machen-->
+      <constraints nullable="false" />
+    </column>
+  </createTable>
+  <createTable  tableName="City">
+    <column  name="ID"  type="INT" />
+    <column  name="NAME"  type="varchar(255)"/>
+    <column  name="LOCALNAME"  type="varchar(255)"/>
+    <column  name="COUNTRY"  type="varchar(255)"/>
+    <column  name="STATE"  type="varchar(255)"/>
+    <column  name="LAT"  type="DOUBLE"/>
+    <column  name="LON"  type="DOUBLE"/>
+  </createTable>
+  <createTable  tableName="WeatherCondition">
+    <column  name="ID"  type="INT" />
+    <column  name="description"  type="varchar(255)"/>
+    <column  name="icon"  type="varchar(255)"/>
+    <column  name="main"  type="varchar(255)"/>
+  </createTable>
+</changeSet>
+</databaseChangeLog>
