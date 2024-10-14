@@ -29,7 +29,7 @@ public class CityController {
     // }
 
     @CrossOrigin
-    @GetMapping("city")
+    @GetMapping("city") //
     public List<City> getLatLonFromCity(@RequestParam String name) throws JsonProcessingException {
         var cityResponse = cityService.callCityData(name);
         return cityResponse;

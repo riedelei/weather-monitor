@@ -1,6 +1,8 @@
 package de.riedelei.weather.weatherdata;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -47,6 +49,7 @@ public class Weather {
    private double lat;
    private long visibility;
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     public void setId(final Long id) {
