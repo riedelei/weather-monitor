@@ -19,14 +19,14 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @CrossOrigin
-    @GetMapping("weather")
+    @GetMapping(value="weather", produces="application/json")
     public Weather getWeatherForLatLon(@RequestParam String lon, @RequestParam String lat) throws JsonProcessingException {
         return weatherService.getWeatherDataFromOpenWeatherMap(lon, lat);
     }
 
     @CrossOrigin
     @GetMapping("weather_city")
-    public List<Weather> getWeatherForCity(@RequestParam String city) {
+    public List<Weather> getWeatherForCity(@RequestParam String city) throws JsonProcessingException {
 
         return weatherService.getWeatherComplete(city);
     }
