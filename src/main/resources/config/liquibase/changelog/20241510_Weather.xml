@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+  <changeSet author="liquibase-docs"  id="addNotNullConstraint-example">
+    <addColumn catalogName="SYSTEM"
+               schemaName= "public"
+               tableName="WEATHER">
+      <column name="WEATHER"
+              type="int">
+        <constraints nullable="true" />
+      </column>
+    </addColumn>
+  </changeSet>
+</databaseChangeLog>

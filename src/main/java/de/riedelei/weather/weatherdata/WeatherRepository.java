@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WeatherRepository extends CrudRepository<Weather, Long> {
+public interface WeatherRepository extends CrudRepository<Weather, Double> {
     public Optional<Weather> findByCity(String city);
 
-    public Weather findWeatherByLonLat(Long lat, Long lon);
+    //public Weather findWeatherByLonLat(Double lat, Double lon);
 }

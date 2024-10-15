@@ -31,7 +31,7 @@ public class CityService {
         var cityMapper = new CityMapper();
         var listofcites = cityMapper.mapStringToCity(responseString);
 
-        cityRepository.saveAll(listofcites);
+        //cityRepository.saveAll(listofcites);
 
         return listofcites;
 

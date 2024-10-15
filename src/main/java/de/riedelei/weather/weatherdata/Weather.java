@@ -45,8 +45,8 @@ public class Weather {
    private long sunset;
    private int clouds;
    private double rain;
-   private double lon;
-   private double lat;
+   private Double lon;
+   private Double lat;
    private long visibility;
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

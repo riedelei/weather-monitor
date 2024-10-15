@@ -49,7 +49,7 @@ public class WeatherService {
         ResponseEntity<String> response = restTemplate.getForEntity(mainUrl, String.class);
         var responseString = response.getBody().toString();
         weather = weatherMapper.generateWeatherObject(responseString);
-        storeWeatherInDb();
+        //storeWeatherInDb();
         return weather;
     }
 
@@ -86,9 +86,9 @@ public class WeatherService {
     }
 
     public Weather getWeatherFromDB(String lon, String lat) {
-        var llon = Long.getLong(lon);
-        var llat = Long.getLong(lat);
-        return weatherRepository.findWeatherByLonLat(llat, llon);
+        var llon = Double.valueOf(lon);
+        var llat = Double.valueOf(lat);
+        return null;//weatherRepository.findWeatherByLonLat(llat, llon);
     }
 
     private void setUrl(String lat, String lon) {
