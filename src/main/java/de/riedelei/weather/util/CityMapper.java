@@ -1,6 +1,7 @@
 package de.riedelei.weather.util;
 
 import de.riedelei.weather.city.City;
+import de.riedelei.weather.city.FavoriteCity;
 import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,11 @@ public class CityMapper {
         }
 
         return cities;
+    }
+
+    public FavoriteCity generateFavoriteCity(String name, Double lat, Double lon) {
+        if(lat.isNaN()) lat = 0.0;
+        if(lon.isNaN()) lon = 0.0;
+        return FavoriteCity.builder().cityName(name).lat(lat).lon(lon).build();
     }
 }

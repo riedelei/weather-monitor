@@ -2,9 +2,9 @@ package de.riedelei.weather.util;
 
 public class OpenWeatherConst {
 
-    public static final String APIKEY = "c5b4da3f4057c95b48ffd41706fe58ea";
+    public static final String APIKEY2 = "c5b4da3f4057c95b48ffd41706fe58ea";
 
-    public static final String APIKEY2 = "d1d99ad31ee399d08809c5ab47684d07";
+    public static final String APIKEY = "d1d99ad31ee399d08809c5ab47684d07";
 
     public enum UNIT {
         METRIC ,

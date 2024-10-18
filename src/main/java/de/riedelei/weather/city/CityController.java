@@ -42,6 +42,12 @@ public class CityController {
         return cityResponse;
     }
 
+    @CrossOrigin
+    @PostMapping("favoritecity")
+    public void setFavoriteCity(@RequestParam String name, @RequestParam Double lat, @RequestParam Double lon) {
+        cityService.setFavoriteCity(name, lat, lon);
+    }
+
     @PostMapping
     public void setCity(@PathVariable String city) {
 

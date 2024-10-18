@@ -21,6 +21,9 @@ public class CityService {
     @Autowired
     public CityRepository cityRepository;
 
+    @Autowired
+    public FavoriteCityRepository favoriteCityRepository;
+
     public List<City> callCityData(String city) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         setUrlWithLatLon(city);
@@ -54,6 +57,12 @@ public class CityService {
 
     public List<City> getListofCitesFromDB(String city) {
         return cityRepository.findCitiesByName(city);
+    }
+
+    public void setFavoriteCity(String city, Double lat, Double lon) {
+        var cityMapper = new CityMapper();
+        var favoriteCity = cityMapper.generateFavoriteCity(city, lat, lon);
+        this.favoriteCityRepository.save(favoriteCity);
     }
 
     private void setUrlWithLatLon(String city) {
