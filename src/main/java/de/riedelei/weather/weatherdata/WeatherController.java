@@ -30,4 +30,10 @@ public class WeatherController {
 
         return weatherService.getWeatherComplete(city);
     }
+
+    @CrossOrigin
+    @GetMapping("weatherfavoritecity")
+    public Weather getWeatherForFavoriteCity() throws JsonProcessingException {
+        return weatherService.getWeatherForFavoriteCity();
+    }
 }

@@ -48,12 +48,8 @@ public class CityController {
         cityService.setFavoriteCity(name, lat, lon);
     }
 
-    @CrossOrigin
-    @GetMapping("favoritecity")
-    public FavoriteCity getFavoriteCity() {
-        return cityService.getFavoriteCity();
-    }
 
+    //
     @CrossOrigin
     @GetMapping("favoritecities")
     public List<FavoriteCity> getAllFavoriteCities() {

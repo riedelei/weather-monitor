@@ -53,6 +53,14 @@ public class WeatherService {
         return weather;
     }
 
+    public Weather getWeatherForFavoriteCity() throws JsonProcessingException {
+        var favoriteCity = cityService.getFavoriteCity();
+        if(favoriteCity != null) {
+            return getWeatherDataFromOpenWeatherMap(favoriteCity.getLon().toString(), favoriteCity.getLat().toString());
+        }
+        return null;
+    }
+
     public List<Weather> getWeatherComplete(String city) throws JsonProcessingException {
         var listCity = cityService.callCityData(city);
         var weatherList = new ArrayList<Weather>();
