@@ -48,8 +48,16 @@ public class CityController {
         cityService.setFavoriteCity(name, lat, lon);
     }
 
-    @PostMapping
-    public void setCity(@PathVariable String city) {
-
+    @CrossOrigin
+    @GetMapping("favoritecity")
+    public FavoriteCity getFavoriteCity() {
+        return cityService.getFavoriteCity();
     }
+
+    @CrossOrigin
+    @GetMapping("favoritecities")
+    public List<FavoriteCity> getAllFavoriteCities() {
+        return cityService.getAllFavoriteCities();
+    }
+
 }

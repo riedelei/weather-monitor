@@ -5,4 +5,6 @@
   <include file="classpath:config/liquibase/changelog/20241510_Weather.xml" relativeToChangelogFile="false" />
 <!--  <include file="classpath:config/liquibase/changelog/202415102_Weather.xml" relativeToChangelogFile="false" />-->
   <include file="classpath:config/liquibase/changelog/202418190807.xml" relativeToChangelogFile="false" />
+  <include file="classpath:config/liquibase/changelog/202418101119.xml" relativeToChangelogFile="false" />
+
 </databaseChangeLog>

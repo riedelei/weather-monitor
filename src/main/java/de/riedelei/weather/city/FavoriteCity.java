@@ -20,6 +20,7 @@ public class FavoriteCity {
     private String cityName;
     private Double lat;
     private Double lon;
+    private boolean shown;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

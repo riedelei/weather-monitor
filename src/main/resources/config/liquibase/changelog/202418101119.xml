@@ -1,0 +1,16 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+  <changeSet author="cried" id="addColumn">
+    <addColumn catalogName="SYSTEM"
+               schemaName= "public"
+               tableName="FavoriteCity">
+      <column name="SHOWN"
+              type="BOOLEAN" defaultValueBoolean="false"/>
+    </addColumn>
+  </changeSet>
+
+</databaseChangeLog>

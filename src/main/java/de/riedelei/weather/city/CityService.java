@@ -2,12 +2,14 @@ package de.riedelei.weather.city;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.riedelei.weather.util.CityMapper;
-import de.riedelei.weather.util.CityMock;
 import de.riedelei.weather.util.OpenWeatherConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 // https://openweathermap.org/api/geocoding-api
@@ -23,6 +25,8 @@ public class CityService {
 
     @Autowired
     public FavoriteCityRepository favoriteCityRepository;
+
+    CityMapper cityMapper = new CityMapper();
 
     public List<City> callCityData(String city) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
@@ -51,7 +55,7 @@ public class CityService {
         // var responseString = response.getBody().toString();
         // var cityMapper = new CityMapper();
         // return cityMapper.mapStringToCity(responseString);
-        var cityMapper = new CityMapper();
+
         return cityMapper.mapStringToCity(jasonPlaces);
     }
 
@@ -60,9 +64,39 @@ public class CityService {
     }
 
     public void setFavoriteCity(String city, Double lat, Double lon) {
-        var cityMapper = new CityMapper();
-        var favoriteCity = cityMapper.generateFavoriteCity(city, lat, lon);
-        this.favoriteCityRepository.save(favoriteCity);
+
+        var cityLatLon = this.favoriteCityRepository.findFavoriteCitiesByLatAndLon(lat, lon);
+
+        if(cityLatLon == null) {
+            var favoriteCity = cityMapper.generateFavoriteCity(city, lat, lon);
+            updateOldFavoriteCity();
+            this.favoriteCityRepository.save(favoriteCity);
+        }
+        else {
+            updateOldFavoriteCity();
+
+            cityLatLon.setShown(true);
+            this.favoriteCityRepository.save(cityLatLon);
+        }
+    }
+
+    public FavoriteCity getFavoriteCity() {
+        return this.favoriteCityRepository.findFavoriteCityByShown(true);
+    }
+
+    public List<FavoriteCity> getAllFavoriteCities() {
+        var listCities = new ArrayList<FavoriteCity>();
+        for (final FavoriteCity favoriteCity : this.favoriteCityRepository.findAll()) listCities.add(favoriteCity);
+
+        return listCities;
+    }
+
+    private void updateOldFavoriteCity() {
+        var favoriteCityOld = this.favoriteCityRepository.findFavoriteCityByShown(true);
+        if (favoriteCityOld != null) {
+            favoriteCityOld.setShown(false);
+            this.favoriteCityRepository.save(favoriteCityOld);
+        }
     }
 
     private void setUrlWithLatLon(String city) {

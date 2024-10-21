@@ -42,6 +42,6 @@ public class CityMapper {
     public FavoriteCity generateFavoriteCity(String name, Double lat, Double lon) {
         if(lat.isNaN()) lat = 0.0;
         if(lon.isNaN()) lon = 0.0;
-        return FavoriteCity.builder().cityName(name).lat(lat).lon(lon).build();
+        return FavoriteCity.builder().cityName(name).lat(lat).lon(lon).shown(true).build();
     }
 }
