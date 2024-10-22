@@ -43,14 +43,20 @@ public class WeatherService {
     }
 
     public Weather getWeatherDataFromOpenWeatherMap(String lon, String lat) throws JsonProcessingException {
-        setUrl(lat, lon);
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(mainUrl, String.class);
-        var responseString = response.getBody().toString();
-        weather = weatherMapper.generateWeatherObject(responseString);
-        //storeWeatherInDb();
-        return weather;
+        if(OpenWeatherConst.useDb == false) {
+            setUrl(lat, lon);
+
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.getForEntity(mainUrl, String.class);
+            var responseString = response.getBody();
+            weather = weatherMapper.generateWeatherObject(responseString);
+
+            return weather;
+        }
+        else {
+            return this.weatherRepository.findByLatAndLon(Float.parseFloat(lat), Float.parseFloat(lon));
+        }
     }
 
     public Weather getWeatherForFavoriteCity() throws JsonProcessingException {
@@ -65,28 +71,26 @@ public class WeatherService {
         var listCity = cityService.callCityData(city);
         var weatherList = new ArrayList<Weather>();
 
-        if(listCity.size() == 1) {
-            var oneCity = listCity.get(0);
-            setUrl(String.valueOf(oneCity.getLat()), String.valueOf(oneCity.getLon()));
+        if(!OpenWeatherConst.useDb) {
 
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.getForEntity(mainUrl, String.class);
-            var responseString = response.getBody().toString();
-            var weatherObject = weatherMapper.generateWeatherObject(responseString);
+            if (listCity.size() == 1) {
+                var oneCity = listCity.get(0);
+                setUrl(String.valueOf(oneCity.getLat()), String.valueOf(oneCity.getLon()));
 
-            weatherList.add(weatherObject);
+                RestTemplate restTemplate = new RestTemplate();
+                ResponseEntity<String> response = restTemplate.getForEntity(mainUrl, String.class);
+                var responseString = response.getBody();
+                var weatherObject = weatherMapper.generateWeatherObject(responseString);
 
+                weatherList.add(weatherObject);
+
+            }
+
+            return weatherList;
         }
-
-
-        for(var c: cityService.callCityData(city)) {
-
+        else {
+            return this.weatherRepository.findByCity(city);
         }
-
-        // nein, anfrage an cityservice
-
-        // lan lat an openweather weitergaben
-        return weatherList;
     }
 
     public void storeWeatherInDb() {

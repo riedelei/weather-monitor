@@ -3,11 +3,12 @@ package de.riedelei.weather.weatherdata;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface WeatherRepository extends CrudRepository<Weather, Double> {
-    public Optional<Weather> findByCity(String city);
+public interface WeatherRepository extends CrudRepository<Weather, Long> {
+    public List<Weather> findByCity(String city);
 
-    //public Weather findWeatherByLonLat(Double lat, Double lon);
+    public Weather findByLatAndLon(float Lat, float Lon);
 }

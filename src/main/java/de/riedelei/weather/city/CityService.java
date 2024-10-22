@@ -29,32 +29,29 @@ public class CityService {
     CityMapper cityMapper = new CityMapper();
 
     public List<City> callCityData(String city) throws JsonProcessingException {
-        RestTemplate restTemplate = new RestTemplate();
-        setUrlWithLatLon(city);
 
-        ResponseEntity<String> response
-                  = restTemplate.getForEntity(placesUrl, String.class);
-        var responseString = response.getBody().toString();
-        var cityMapper = new CityMapper();
-        var listofcites = cityMapper.mapStringToCity(responseString);
+        if(OpenWeatherConst.useDb == false) {
+            RestTemplate restTemplate = new RestTemplate();
+            setUrlWithLatLon(city);
 
-        //cityRepository.saveAll(listofcites);
+            ResponseEntity<String> response
+                    = restTemplate.getForEntity(placesUrl, String.class);
+            var responseString = response.getBody().toString();
+            var cityMapper = new CityMapper();
+            var listofcites = cityMapper.mapStringToCity(responseString);
 
-        return listofcites;
+            //cityRepository.saveAll(listofcites);
 
-        // var cityMock = new CityMock();
-        // return cityMock.getAListOfCities();
+            return listofcites;
+        }
+        else {
+            return this.cityRepository.findCitiesByName(city);
+        }
     }
 
     public List<City> callOneCityData(String city) throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         setUrlWithLatLonForOneCity(city);
-
-        // ResponseEntity<String> response
-        //         = restTemplate.getForEntity(placesUrl, String.class);
-        // var responseString = response.getBody().toString();
-        // var cityMapper = new CityMapper();
-        // return cityMapper.mapStringToCity(responseString);
 
         return cityMapper.mapStringToCity(jasonPlaces);
     }
